@@ -8,8 +8,7 @@ int main()
     sim::Console C;
     C.ClearColor(sim::Console::BrightWhite, sim::Console::LightBlue);
 
-    cout << sim::Gcd(60, 12) << endl;
-    cout << sim::Lcm(60, 12) << endl;
+    cout << sim::NumberPos(12345, 4) << endl;
 
     cin.get();
     return 0;
