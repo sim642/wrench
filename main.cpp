@@ -8,7 +8,11 @@ int main()
     sim::Console C;
     C.ClearColor(sim::Console::BrightWhite, sim::Console::LightBlue);
 
-    cout << sim::NumberPos(12345, 4) << endl;
+    sim::Timer T;
+    T.Start();
+    Sleep(500);
+    T.Stop();
+    cout << T.GetMilliSec() << endl;
 
     cin.get();
     return 0;

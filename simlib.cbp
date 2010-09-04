@@ -36,6 +36,8 @@
 		<Unit filename="Console.hpp" />
 		<Unit filename="Math.cpp" />
 		<Unit filename="Math.hpp" />
+		<Unit filename="Timer.cpp" />
+		<Unit filename="Timer.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="simlib.hpp" />
 		<Extensions>
