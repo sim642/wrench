@@ -4,5 +4,6 @@
 #include "Console.hpp"
 #include "Math.hpp"
 #include "Timer.hpp"
+#include "String.hpp"
 
 #endif // SIMLIB_H

@@ -8,11 +8,10 @@ int main()
     sim::Console C;
     C.ClearColor(sim::Console::BrightWhite, sim::Console::LightBlue);
 
-    sim::Timer T;
-    T.Start();
-    Sleep(500);
-    T.Stop();
-    cout << T.GetMilliSec() << endl;
+    string str("  \n\n asdasdasd \r\t  ");
+    str = sim::Trim(str);
+
+    cout << str << endl;
 
     cin.get();
     return 0;
