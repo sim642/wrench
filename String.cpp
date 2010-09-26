@@ -16,4 +16,41 @@ namespace sim
     {
         return TrimLeft(TrimRight(String, Remove), Remove);
     }
+
+    std::vector<std::string> Explode(std::string String, std::string Separator, int Limit)
+    {
+        std::vector<std::string> Return;
+        size_t StartPosition = 0, EndPosition;
+
+        int Count = 1;
+        while ((EndPosition = String.find(Separator, StartPosition)) != std::string::npos && (Limit > 0 ? Count < Limit : true))
+        {
+        	Return.push_back(String.substr(StartPosition, EndPosition - StartPosition));
+        	StartPosition = EndPosition + Separator.length();
+
+        	if (Limit > 0)
+            {
+                Count++;
+            }
+        }
+        Return.push_back(String.substr(StartPosition));
+
+        return Return;
+    }
+
+    std::string Implode(std::vector<std::string> Strings, std::string Separator)
+    {
+        std::string Return;
+
+        for (std::vector<std::string>::iterator it = Strings.begin(); it != Strings.end(); ++it)
+        {
+            Return += *it;
+            if (it != Strings.end() - 1)
+            {
+                Return += Separator;
+            }
+        }
+
+        return Return;
+    }
 }
