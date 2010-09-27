@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <cctype>
 
 namespace sim
 {
@@ -16,6 +17,9 @@ namespace sim
 
     std::vector<std::string> Explode(std::string, std::string = DefaultSeparator, int = 0);
     std::string Implode(std::vector<std::string>, std::string = DefaultSeparator);
+
+    std::string ToUpper(std::string);
+    std::string ToLower(std::string);
 }
 
 #endif // SIMLIB_STRING_H

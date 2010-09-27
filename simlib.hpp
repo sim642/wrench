@@ -5,5 +5,6 @@
 #include "Math.hpp"
 #include "Timer.hpp"
 #include "String.hpp"
+#include "General.hpp"
 
 #endif // SIMLIB_H

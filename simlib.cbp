@@ -34,6 +34,8 @@
 		</Compiler>
 		<Unit filename="Console.cpp" />
 		<Unit filename="Console.hpp" />
+		<Unit filename="General.cpp" />
+		<Unit filename="General.hpp" />
 		<Unit filename="Math.cpp" />
 		<Unit filename="Math.hpp" />
 		<Unit filename="String.cpp" />

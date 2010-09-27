@@ -53,4 +53,16 @@ namespace sim
 
         return Return;
     }
+
+    std::string ToUpper(std::string String)
+    {
+        std::transform(String.begin(), String.end(), String.begin(), (int(*)(int))std::toupper);
+        return String;
+    }
+
+    std::string ToLower(std::string String)
+    {
+        std::transform(String.begin(), String.end(), String.begin(), (int(*)(int))std::tolower);
+        return String;
+    }
 }

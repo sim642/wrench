@@ -9,12 +9,9 @@ int main()
     sim::Console C;
     C.ClearColor(sim::Console::BrightWhite, sim::Console::LightBlue);
 
-    vector<string> strs;
+    string str = "abcABC123¤%&";
 
-    strs = sim::Explode("one|two|three|four", "|", 2);
-
-    for (int i = 0; i < strs.size(); i++)
-        cout << strs[i] << endl;
+    cout << sim::ToUpper(str) << endl << sim::ToLower(str) << endl;
 
     cin.get();
     return 0;
