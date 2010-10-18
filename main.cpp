@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "simlib.hpp"
+#include <simlib/simlib.hpp>
 
 using namespace std;
 

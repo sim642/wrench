@@ -32,18 +32,18 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Console.cpp" />
-		<Unit filename="Console.hpp" />
-		<Unit filename="General.cpp" />
-		<Unit filename="General.hpp" />
-		<Unit filename="Math.cpp" />
-		<Unit filename="Math.hpp" />
-		<Unit filename="String.cpp" />
-		<Unit filename="String.hpp" />
-		<Unit filename="Timer.cpp" />
-		<Unit filename="Timer.hpp" />
+		<Unit filename="include\simlib\Console.cpp" />
+		<Unit filename="include\simlib\Console.hpp" />
+		<Unit filename="include\simlib\General.cpp" />
+		<Unit filename="include\simlib\General.hpp" />
+		<Unit filename="include\simlib\Math.cpp" />
+		<Unit filename="include\simlib\Math.hpp" />
+		<Unit filename="include\simlib\String.cpp" />
+		<Unit filename="include\simlib\String.hpp" />
+		<Unit filename="include\simlib\Timer.cpp" />
+		<Unit filename="include\simlib\Timer.hpp" />
+		<Unit filename="include\simlib\simlib.hpp" />
 		<Unit filename="main.cpp" />
-		<Unit filename="simlib.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
