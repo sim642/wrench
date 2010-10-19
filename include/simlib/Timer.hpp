@@ -8,16 +8,56 @@ namespace sim
     class Timer
     {
         public:
-            Timer();
-            ~Timer();
+            Timer() : Active(false)
+            {
+                StartCount.QuadPart = 0;
+            }
 
-            void Start();
-            void Stop();
-            bool Running();
+            ~Timer()
+            {
+                //dtor
+            }
 
-            double GetMicroSec();
-            double GetMilliSec();
-            double GetSec();
+            void Start()
+            {
+                Active = true;
+                QueryPerformanceCounter(&StartCount);
+            }
+
+            void Stop()
+            {
+                Active = false;
+            }
+
+            bool Running()
+            {
+                return Active;
+            }
+
+            double GetMicroSec()
+            {
+                LARGE_INTEGER StopCount;
+                QueryPerformanceCounter(&StopCount);
+
+                LARGE_INTEGER Frequency;
+                QueryPerformanceFrequency(&Frequency);
+
+                double StartTime, StopTime;
+                StartTime = StartCount.QuadPart * (1000000.0 / Frequency.QuadPart);
+                StopTime = StopCount.QuadPart * (1000000.0 / Frequency.QuadPart);
+
+                return StopTime - StartTime;
+            }
+
+            double GetMilliSec()
+            {
+                return GetMicroSec() * 0.001;
+            }
+
+            double GetSec()
+            {
+                return GetMicroSec() * 0.000001;
+            }
 
         private:
             bool Active;
