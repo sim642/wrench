@@ -1,10 +1,10 @@
 #ifndef SIMLIB_H
 #define SIMLIB_H
 
-#include "Console.hpp"
-#include "Math.hpp"
-#include "Timer.hpp"
-#include "String.hpp"
 #include "General.hpp"
+#include "Math.hpp"
+#include "String.hpp"
+#include "Console.hpp"
+#include "Timer.hpp"
 
 #endif // SIMLIB_H
