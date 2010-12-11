@@ -1,9 +1,9 @@
-#ifndef SIMLIB_CONSOLE_H
-#define SIMLIB_CONSOLE_H
+#ifndef WRENCH_CONSOLE_H
+#define WRENCH_CONSOLE_H
 
 #include <windows.h>
 
-namespace sim
+namespace wrench
 {
     class Console
     {
@@ -45,4 +45,4 @@ namespace sim
     };
 }
 
-#endif //SIMLIB_CONSOLE_H
+#endif //WRENCH_CONSOLE_H

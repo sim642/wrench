@@ -1,6 +1,6 @@
-#include <simlib/String.hpp>
+#include <wrench/String.hpp>
 
-namespace sim
+namespace wrench
 {
     std::string TrimLeft(std::string String, std::string Remove)
     {

@@ -1,6 +1,6 @@
-#include <simlib/Math.hpp>
+#include <wrench/Math.hpp>
 
-namespace sim
+namespace wrench
 {
     int Gcd(int A, int B)
     {
@@ -34,7 +34,7 @@ namespace sim
         if (X == 0)
             return 1;
         else
-            return Sign(X) * std::ceil(std::log10(std::abs(std::floor(X)) + 1));
+            return std::ceil(std::log10(std::abs(std::floor(X)) + 1));
     }
 
     int NumberPos(int X, int I)

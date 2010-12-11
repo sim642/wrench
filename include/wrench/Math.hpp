@@ -1,9 +1,9 @@
-#ifndef SIMLIB_MATH_H
-#define SIMLIB_MATH_H
+#ifndef WRENCH_MATH_H
+#define WRENCH_MATH_H
 
 #include <cmath>
 
-namespace sim
+namespace wrench
 {
     int Gcd(int, int);
     int Lcm(int, int);
@@ -12,4 +12,4 @@ namespace sim
     int NumberPos(int, int);
 }
 
-#endif // SIMLIB_MATH_H
+#endif // WRENCH_MATH_H

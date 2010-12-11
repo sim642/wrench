@@ -1,6 +1,6 @@
-#include <simlib/Timer.hpp>
+#include <wrench/Timer.hpp>
 
-namespace sim
+namespace wrench
 {
     Timer::Timer() : Active(false)
     {
@@ -21,6 +21,7 @@ namespace sim
     void Timer::Stop()
     {
         Active = false;
+        QueryPerformanceCounter(&StopCount);
     }
 
     bool Timer::Running()
@@ -30,9 +31,6 @@ namespace sim
 
     double Timer::GetMicroSec()
     {
-        LARGE_INTEGER StopCount;
-        QueryPerformanceCounter(&StopCount);
-
         LARGE_INTEGER Frequency;
         QueryPerformanceFrequency(&Frequency);
 

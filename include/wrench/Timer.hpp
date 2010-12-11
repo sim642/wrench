@@ -1,9 +1,9 @@
-#ifndef TIMER_H
-#define TIMER_H
+#ifndef WRENCH_TIMER_H
+#define WRENCH_TIMER_H
 
 #include <windows.h>
 
-namespace sim
+namespace wrench
 {
     class Timer
     {
@@ -21,8 +21,8 @@ namespace sim
 
         private:
             bool Active;
-            LARGE_INTEGER StartCount;
+            LARGE_INTEGER StartCount, StopCount;
     };
 }
 
-#endif // TIMER_H
+#endif // WRENCH_TIMER_H

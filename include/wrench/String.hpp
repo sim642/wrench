@@ -1,12 +1,12 @@
-#ifndef SIMLIB_STRING_H
-#define SIMLIB_STRING_H
+#ifndef WRENCH_STRING_H
+#define WRENCH_STRING_H
 
 #include <string>
 #include <vector>
 #include <algorithm>
 #include <cctype>
 
-namespace sim
+namespace wrench
 {
     const std::string DefaultSpaces = " \t\n\r\0\x0B";
     const std::string DefaultSeparator = " ";
@@ -22,4 +22,4 @@ namespace sim
     std::string ToLower(std::string);
 }
 
-#endif // SIMLIB_STRING_H
+#endif // WRENCH_STRING_H

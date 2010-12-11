@@ -1,5 +1,7 @@
-#ifndef SIMLIB_H
-#define SIMLIB_H
+#ifndef WRENCH_H
+#define WRENCH_H
+
+namespace wr = wrench;
 
 #include "General.hpp"
 #include "Math.hpp"
@@ -7,4 +9,4 @@
 #include "Console.hpp"
 #include "Timer.hpp"
 
-#endif // SIMLIB_H
+#endif // WRENCH_H

@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="simlib" />
+		<Option title="wrench" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="lib\libsimlib" prefix_auto="1" extension_auto="1" />
+				<Option output="lib\libwrench-d" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option object_output="obj\Debug\" />
 				<Option type="2" />
@@ -19,7 +19,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="lib\libsimlib" prefix_auto="1" extension_auto="1" />
+				<Option output="lib\libwrench" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option object_output="obj\Release\" />
 				<Option type="2" />
@@ -34,18 +34,17 @@
 				</Linker>
 			</Target>
 		</Build>
-		<Unit filename="include\simlib\Console.hpp" />
-		<Unit filename="include\simlib\General.hpp" />
-		<Unit filename="include\simlib\Math.hpp" />
-		<Unit filename="include\simlib\String.hpp" />
-		<Unit filename="include\simlib\Timer.hpp" />
-		<Unit filename="include\simlib\simlib.hpp" />
+		<Unit filename="include\wrench\Console.hpp" />
+		<Unit filename="include\wrench\General.hpp" />
+		<Unit filename="include\wrench\Math.hpp" />
+		<Unit filename="include\wrench\String.hpp" />
+		<Unit filename="include\wrench\Timer.hpp" />
+		<Unit filename="include\wrench\wrench.hpp" />
 		<Unit filename="src\Console.cpp" />
 		<Unit filename="src\General.cpp" />
 		<Unit filename="src\Math.cpp" />
 		<Unit filename="src\String.cpp" />
 		<Unit filename="src\Timer.cpp" />
-		<Unit filename="src\simlib.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
