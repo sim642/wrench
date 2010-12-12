@@ -34,6 +34,9 @@
 				</Linker>
 			</Target>
 		</Build>
+		<VirtualTargets>
+			<Add alias="All" targets="Debug;Release;" />
+		</VirtualTargets>
 		<Unit filename="include\wrench\Console.hpp" />
 		<Unit filename="include\wrench\General.hpp" />
 		<Unit filename="include\wrench\Math.hpp" />
