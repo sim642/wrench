@@ -10,6 +10,8 @@ namespace wrench
     int Sign(int);
     int NumberLength(int);
     int NumberPos(int, int);
+    int Map(int, int, int, int, int);
+    int Constrain(int, int, int);
 }
 
 #endif // WRENCH_MATH_H

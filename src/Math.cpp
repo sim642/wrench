@@ -41,4 +41,14 @@ namespace wrench
     {
         return int(X / std::pow(10.0, I)) % 10;
     }
+
+    int Map(int X, int InLow, int InHigh, int OutLow, int OutHigh)
+    {
+        return (X - InLow) * (OutHigh - OutLow) / (InHigh - InLow) + OutLow;
+    }
+
+    int Constrain(int X, int Low, int High)
+    {
+        return X < Low ? Low : (X > High ? High : X);
+    }
 }
