@@ -1,6 +1,7 @@
 #ifndef WRENCH_CONSOLE_H
 #define WRENCH_CONSOLE_H
 
+#include <string>
 #include <windows.h>
 
 namespace wrench
@@ -13,6 +14,8 @@ namespace wrench
                           LightPurple, LightYellow, LightWhite,
                           Grey = 8, BrightWhite = 15};
             enum Cursor {Hidden, Default = 25, Full = 100};
+            const static int DefaultWidth = 80,
+                             DefaultHeight = 24;
         private:
             HANDLE Output;
         public:
@@ -29,6 +32,13 @@ namespace wrench
             void SetY(int = 0);
             int GetY();
 
+            void SetBufferSize(int = DefaultWidth, int = DefaultHeight);
+            void GetBufferSize(int&, int&);
+            void SetBufferWidth(int = DefaultWidth);
+            int GetBufferWidth();
+            void SetBufferHeight(int = DefaultWidth);
+            int GetBufferHeight();
+
             void SetColor(int = White, int = Black);
             void GetColor(int&, int&);
             void SetForeColor(int = White);
@@ -42,6 +52,9 @@ namespace wrench
 
             void SetCursor(int);
             int GetCursor();
+
+            void SetTitle(std::string);
+            std::string GetTitle();
     };
 }
 

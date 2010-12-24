@@ -38,9 +38,7 @@ namespace wrench
 
     void Console::SetX(int NewX)
     {
-        int X, Y;
-        GetXY(X, Y);
-        SetXY(NewX, Y);
+        SetXY(NewX, GetY());
     }
 
     int Console::GetX()
@@ -52,9 +50,7 @@ namespace wrench
 
     void Console::SetY(int NewY)
     {
-        int X, Y;
-        GetXY(X, Y);
-        SetXY(X, NewY);
+        SetXY(GetX(), NewY);
     }
 
     int Console::GetY()
@@ -62,6 +58,44 @@ namespace wrench
         int X, Y;
         GetXY(X, Y);
         return Y;
+    }
+
+    void Console::SetBufferSize(int NewWidth, int NewHeight)
+    {
+        COORD Size = {NewWidth, NewHeight};
+        SetConsoleScreenBufferSize(Output, Size);
+    }
+
+    void Console::GetBufferSize(int& Width, int& Height)
+    {
+        CONSOLE_SCREEN_BUFFER_INFO Info;
+        GetConsoleScreenBufferInfo(Output, &Info);
+        Width = Info.dwSize.X;
+        Height = Info.dwSize.Y;
+    }
+
+    void Console::SetBufferWidth(int NewWidth)
+    {
+        SetBufferSize(NewWidth, GetBufferHeight());
+    }
+
+    int Console::GetBufferWidth()
+    {
+        int Width, Height;
+        GetBufferSize(Width, Height);
+        return Width;
+    }
+
+    void Console::SetBufferHeight(int NewHeight)
+    {
+        SetBufferSize(GetBufferWidth(), NewHeight);
+    }
+
+    int Console::GetBufferHeight()
+    {
+        int Width, Height;
+        GetBufferSize(Width, Height);
+        return Height;
     }
 
     void Console::SetColor(int NewFore, int NewBack)
@@ -165,5 +199,17 @@ namespace wrench
         CONSOLE_CURSOR_INFO Info;
         GetConsoleCursorInfo(Output, &Info);
         return (Info.bVisible == TRUE ? Info.dwSize : 0);
+    }
+
+    void Console::SetTitle(std::string NewTitle)
+    {
+        SetConsoleTitle(NewTitle.c_str());
+    }
+
+    std::string Console::GetTitle()
+    {
+        char Title[MAX_PATH];
+        GetConsoleTitle(Title, MAX_PATH);
+        return std::string(Title);
     }
 }
