@@ -65,4 +65,18 @@ namespace wrench
         std::transform(String.begin(), String.end(), String.begin(), (int(*)(int))std::tolower);
         return String;
     }
+
+    /** Repeating for std::string */
+    std::string operator*(const std::string& lhs, std::size_t rhs)
+    {
+        std::string Return;
+        for (Return.reserve(lhs.size() * rhs); rhs > 0; rhs--)
+            Return.append(lhs);
+        return Return;
+    }
+
+    std::string operator*(std::size_t lhs, const std::string& rhs)
+    {
+        return operator*(rhs, lhs);
+    }
 }

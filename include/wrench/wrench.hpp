@@ -7,8 +7,14 @@
 #include "Console.hpp"
 #include "Timer.hpp"
 
-    #ifndef WRENCH_NOSHORT
-    namespace wr = wrench;
-    #endif
+/** Disable wrench operators in global namespace */
+#ifndef WRENCH_NO_GLOBALOPS
+#include "GlobalOps.hpp"
+#endif
+
+/** Disable short namespace definition */
+#ifndef WRENCH_NO_SHORT_NAMESPACE
+namespace wr = wrench;
+#endif
 
 #endif // WRENCH_H

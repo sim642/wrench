@@ -20,6 +20,10 @@ namespace wrench
 
     std::string ToUpper(std::string);
     std::string ToLower(std::string);
+
+    /** Repeating for std::string */
+    std::string operator*(const std::string&, std::size_t);
+    std::string operator*(std::size_t, const std::string&);
 }
 
 #endif // WRENCH_STRING_H
