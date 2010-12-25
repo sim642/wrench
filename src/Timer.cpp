@@ -12,19 +12,19 @@ namespace wrench
         //dtor
     }
 
-    void Timer::Start()
+    bool Timer::Start()
     {
         Active = true;
-        QueryPerformanceCounter(&StartCount);
+        return QueryPerformanceCounter(&StartCount);
     }
 
-    void Timer::Stop()
+    bool Timer::Stop()
     {
         Active = false;
-        QueryPerformanceCounter(&StopCount);
+        return QueryPerformanceCounter(&StopCount);
     }
 
-    bool Timer::Running()
+    bool Timer::IsRunning()
     {
         return Active;
     }

@@ -11,9 +11,9 @@ namespace wrench
             Timer();
             ~Timer();
 
-            void Start();
-            void Stop();
-            bool Running();
+            bool Start();
+            bool Stop();
+            bool IsRunning();
 
             double GetMicroSec();
             double GetMilliSec();

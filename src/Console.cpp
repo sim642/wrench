@@ -24,10 +24,10 @@ namespace wrench
     }
 
     /** Cursor */
-    void Console::SetXY(int NewX, int NewY)
+    bool Console::SetXY(int NewX, int NewY)
     {
         COORD Pos = {NewX, NewY};
-        SetConsoleCursorPosition(Output, Pos);
+        return SetConsoleCursorPosition(Output, Pos);
     }
 
     void Console::GetXY(int& X, int& Y)
@@ -38,9 +38,9 @@ namespace wrench
         Y = Info.dwCursorPosition.Y;
     }
 
-    void Console::SetX(int NewX)
+    bool Console::SetX(int NewX)
     {
-        SetXY(NewX, GetY());
+        return SetXY(NewX, GetY());
     }
 
     int Console::GetX()
@@ -50,9 +50,9 @@ namespace wrench
         return X;
     }
 
-    void Console::SetY(int NewY)
+    bool Console::SetY(int NewY)
     {
-        SetXY(GetX(), NewY);
+        return SetXY(GetX(), NewY);
     }
 
     int Console::GetY()
@@ -62,7 +62,7 @@ namespace wrench
         return Y;
     }
 
-    void Console::SetCursor(int NewPercent)
+    bool Console::SetCursor(int NewPercent)
     {
         CONSOLE_CURSOR_INFO Info;
         if (NewPercent > 0)
@@ -82,7 +82,7 @@ namespace wrench
             Info.dwSize = 1;
             Info.bVisible = FALSE;
         }
-        SetConsoleCursorInfo(Output, &Info);
+        return SetConsoleCursorInfo(Output, &Info);
     }
 
     int Console::GetCursor()
@@ -93,10 +93,10 @@ namespace wrench
     }
 
     /** Buffer size */
-    void Console::SetBufferSize(int NewWidth, int NewHeight)
+    bool Console::SetBufferSize(int NewWidth, int NewHeight)
     {
         COORD Size = {NewWidth, NewHeight};
-        SetConsoleScreenBufferSize(Output, Size);
+        return SetConsoleScreenBufferSize(Output, Size);
     }
 
     void Console::GetBufferSize(int& Width, int& Height)
@@ -107,9 +107,9 @@ namespace wrench
         Height = Info.dwSize.Y;
     }
 
-    void Console::SetBufferWidth(int NewWidth)
+    bool Console::SetBufferWidth(int NewWidth)
     {
-        SetBufferSize(NewWidth, GetBufferHeight());
+        return SetBufferSize(NewWidth, GetBufferHeight());
     }
 
     int Console::GetBufferWidth()
@@ -119,9 +119,9 @@ namespace wrench
         return Width;
     }
 
-    void Console::SetBufferHeight(int NewHeight)
+    bool Console::SetBufferHeight(int NewHeight)
     {
-        SetBufferSize(GetBufferWidth(), NewHeight);
+        return SetBufferSize(GetBufferWidth(), NewHeight);
     }
 
     int Console::GetBufferHeight()
@@ -132,10 +132,10 @@ namespace wrench
     }
 
     /** Window size */
-    void Console::SetWindowSize(int NewWidth, int NewHeight)
+    bool Console::SetWindowSize(int NewWidth, int NewHeight)
     {
         SMALL_RECT Size = {0, 0, NewWidth - 1, NewHeight - 1};
-        SetConsoleWindowInfo(Output, TRUE, &Size);
+        return SetConsoleWindowInfo(Output, TRUE, &Size);
     }
 
     void Console::GetWindowSize(int& Width, int& Height)
@@ -146,9 +146,9 @@ namespace wrench
         Height = Info.srWindow.Bottom;
     }
 
-    void Console::SetWindowWidth(int NewWidth)
+    bool Console::SetWindowWidth(int NewWidth)
     {
-        SetWindowSize(NewWidth, GetWindowHeight());
+        return SetWindowSize(NewWidth, GetWindowHeight());
     }
 
     int Console::GetWindowWidth()
@@ -158,9 +158,9 @@ namespace wrench
         return Width;
     }
 
-    void Console::SetWindowHeight(int NewHeight)
+    bool Console::SetWindowHeight(int NewHeight)
     {
-        SetWindowSize(GetWindowWidth(), NewHeight);
+        return SetWindowSize(GetWindowWidth(), NewHeight);
     }
 
     int Console::GetWindowHeight()
@@ -171,9 +171,9 @@ namespace wrench
     }
 
     /** Color */
-    void Console::SetColor(int NewFore, int NewBack)
+    bool Console::SetColor(int NewFore, int NewBack)
     {
-        SetConsoleTextAttribute(Output, NewFore | NewBack << 4);
+        return SetConsoleTextAttribute(Output, NewFore | NewBack << 4);
     }
 
     void Console::GetColor(int& Fore, int& Back)
@@ -184,9 +184,9 @@ namespace wrench
         Back = (Info.wAttributes >> 4) & 0xF;
     }
 
-    void Console::SetForeColor(int NewFore)
+    bool Console::SetForeColor(int NewFore)
     {
-        SetColor(NewFore, GetBackColor());
+        return SetColor(NewFore, GetBackColor());
     }
 
     int Console::GetForeColor()
@@ -196,9 +196,9 @@ namespace wrench
         return Fore;
     }
 
-    void Console::SetBackColor(int NewBack)
+    bool Console::SetBackColor(int NewBack)
     {
-        SetColor(GetForeColor(), NewBack);
+        return SetColor(GetForeColor(), NewBack);
     }
 
     int Console::GetBackColor()
@@ -209,42 +209,48 @@ namespace wrench
     }
 
     /** Clear */
-    void Console::ClearChar(char NewChar, bool Reset)
+    bool Console::ClearChar(char NewChar, bool Reset)
     {
+        bool Return = true;
         CONSOLE_SCREEN_BUFFER_INFO Info;
         COORD Pos = {0, 0};
         DWORD Count;
         GetConsoleScreenBufferInfo(Output, &Info);
-        FillConsoleOutputCharacter(Output, NewChar, Info.dwSize.X * Info.dwSize.Y, Pos, &Count);
+        Return &= FillConsoleOutputCharacter(Output, NewChar, Info.dwSize.X * Info.dwSize.Y, Pos, &Count);
         if (Reset)
-            SetXY(0, 0);
+            Return &= SetXY(0, 0);
+        return Return;
     }
 
-    void Console::ClearColor(int NewFore, int NewBack, bool Reset, bool SwapColor)
+    bool Console::ClearColor(int NewFore, int NewBack, bool Reset, bool SwapColor)
     {
+        bool Return = true;
         CONSOLE_SCREEN_BUFFER_INFO Info;
         COORD Pos = {0, 0};
         DWORD Count;
         GetConsoleScreenBufferInfo(Output, &Info);
-        FillConsoleOutputAttribute(Output, NewFore | NewBack << 4, Info.dwSize.X * Info.dwSize.Y, Pos, &Count);
+        Return &= FillConsoleOutputAttribute(Output, NewFore | NewBack << 4, Info.dwSize.X * Info.dwSize.Y, Pos, &Count);
         if (Reset)
-            SetXY(0, 0);
+            Return &= SetXY(0, 0);
         if (SwapColor)
-            SetColor(NewFore, NewBack);
+            Return &= SetColor(NewFore, NewBack);
+        return Return;
     }
 
-    void Console::Clear(bool Reset)
+    bool Console::Clear(bool Reset)
     {
-        ClearChar();
-        ClearColor();
+        bool Return = true;
+        Return &= ClearChar();
+        Return &= ClearColor();
         if (Reset)
-            SetXY(0, 0);
+            Return &= SetXY(0, 0);
+        return Return;
     }
 
     /** Title */
-    void Console::SetTitle(std::string NewTitle)
+    bool Console::SetTitle(std::string NewTitle)
     {
-        SetConsoleTitle(NewTitle.c_str());
+        return SetConsoleTitle(NewTitle.c_str());
     }
 
     std::string Console::GetTitle()

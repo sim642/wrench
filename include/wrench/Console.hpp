@@ -26,47 +26,47 @@ namespace wrench
             HANDLE GetHandleOutput();
 
             /** Cursor */
-            void SetXY(int = 0, int = 0);
+            bool SetXY(int = 0, int = 0);
             void GetXY(int&, int&);
-            void SetX(int = 0);
+            bool SetX(int = 0);
             int GetX();
-            void SetY(int = 0);
+            bool SetY(int = 0);
             int GetY();
 
-            void SetCursor(int);
+            bool SetCursor(int);
             int GetCursor();
 
             /** Buffer size */
-            void SetBufferSize(int = DefaultBufferWidth, int = DefaultBufferHeight);
+            bool SetBufferSize(int = DefaultBufferWidth, int = DefaultBufferHeight);
             void GetBufferSize(int&, int&);
-            void SetBufferWidth(int = DefaultBufferWidth);
+            bool SetBufferWidth(int = DefaultBufferWidth);
             int GetBufferWidth();
-            void SetBufferHeight(int = DefaultBufferHeight);
+            bool SetBufferHeight(int = DefaultBufferHeight);
             int GetBufferHeight();
 
             /** Window size */
-            void SetWindowSize(int = DefaultWindowWidth, int = DefaultWindowHeight);
+            bool SetWindowSize(int = DefaultWindowWidth, int = DefaultWindowHeight);
             void GetWindowSize(int&, int&);
-            void SetWindowWidth(int = DefaultWindowWidth);
+            bool SetWindowWidth(int = DefaultWindowWidth);
             int GetWindowWidth();
-            void SetWindowHeight(int = DefaultWindowHeight);
+            bool SetWindowHeight(int = DefaultWindowHeight);
             int GetWindowHeight();
 
             /** Color */
-            void SetColor(int = White, int = Black);
+            bool SetColor(int = White, int = Black);
             void GetColor(int&, int&);
-            void SetForeColor(int = White);
+            bool SetForeColor(int = White);
             int GetForeColor();
-            void SetBackColor(int = Black);
+            bool SetBackColor(int = Black);
             int GetBackColor();
 
             /** Clear */
-            void ClearChar(char = ' ', bool = false);
-            void ClearColor(int = White, int = Black, bool = false, bool = true);
-            void Clear(bool = true);
+            bool ClearChar(char = ' ', bool = false);
+            bool ClearColor(int = White, int = Black, bool = false, bool = true);
+            bool Clear(bool = true);
 
             /** Title */
-            void SetTitle(std::string);
+            bool SetTitle(std::string);
             std::string GetTitle();
     };
 }
