@@ -12,6 +12,7 @@ namespace wrench
         Output = NewOutput;
     }
 
+    /** Handles */
     void Console::SetHandleOutput(HANDLE NewOutput)
     {
         Output = NewOutput;
@@ -22,6 +23,7 @@ namespace wrench
         return Output;
     }
 
+    /** Cursor */
     void Console::SetXY(int NewX, int NewY)
     {
         COORD Pos = {NewX, NewY};
@@ -60,6 +62,37 @@ namespace wrench
         return Y;
     }
 
+    void Console::SetCursor(int NewPercent)
+    {
+        CONSOLE_CURSOR_INFO Info;
+        if (NewPercent > 0)
+        {
+            if (NewPercent <= 100)
+            {
+                Info.dwSize = NewPercent;
+            }
+            else
+            {
+                Info.dwSize = 100;
+            }
+            Info.bVisible = TRUE;
+        }
+        else
+        {
+            Info.dwSize = 1;
+            Info.bVisible = FALSE;
+        }
+        SetConsoleCursorInfo(Output, &Info);
+    }
+
+    int Console::GetCursor()
+    {
+        CONSOLE_CURSOR_INFO Info;
+        GetConsoleCursorInfo(Output, &Info);
+        return (Info.bVisible == TRUE ? Info.dwSize : 0);
+    }
+
+    /** Buffer size */
     void Console::SetBufferSize(int NewWidth, int NewHeight)
     {
         COORD Size = {NewWidth, NewHeight};
@@ -98,6 +131,46 @@ namespace wrench
         return Height;
     }
 
+    /** Window size */
+    void Console::SetWindowSize(int NewWidth, int NewHeight)
+    {
+        SMALL_RECT Size = {0, 0, NewWidth - 1, NewHeight - 1};
+        SetConsoleWindowInfo(Output, TRUE, &Size);
+    }
+
+    void Console::GetWindowSize(int& Width, int& Height)
+    {
+        CONSOLE_SCREEN_BUFFER_INFO Info;
+        GetConsoleScreenBufferInfo(Output, &Info);
+        Width = Info.srWindow.Right;
+        Height = Info.srWindow.Bottom;
+    }
+
+    void Console::SetWindowWidth(int NewWidth)
+    {
+        SetWindowSize(NewWidth, GetWindowHeight());
+    }
+
+    int Console::GetWindowWidth()
+    {
+        int Width, Height;
+        GetWindowSize(Width, Height);
+        return Width;
+    }
+
+    void Console::SetWindowHeight(int NewHeight)
+    {
+        SetWindowSize(GetWindowWidth(), NewHeight);
+    }
+
+    int Console::GetWindowHeight()
+    {
+        int Width, Height;
+        GetWindowSize(Width, Height);
+        return Height;
+    }
+
+    /** Color */
     void Console::SetColor(int NewFore, int NewBack)
     {
         SetConsoleTextAttribute(Output, NewFore | NewBack << 4);
@@ -107,15 +180,13 @@ namespace wrench
     {
         CONSOLE_SCREEN_BUFFER_INFO Info;
         GetConsoleScreenBufferInfo(Output, &Info);
-        Fore = Info.wAttributes & 15;
-        Back = (Info.wAttributes >> 4) & 15;
+        Fore = Info.wAttributes & 0xF;
+        Back = (Info.wAttributes >> 4) & 0xF;
     }
 
     void Console::SetForeColor(int NewFore)
     {
-        int Fore, Back;
-        GetColor(Fore, Back);
-        SetColor(NewFore, Back);
+        SetColor(NewFore, GetBackColor());
     }
 
     int Console::GetForeColor()
@@ -127,9 +198,7 @@ namespace wrench
 
     void Console::SetBackColor(int NewBack)
     {
-        int Fore, Back;
-        GetColor(Fore, Back);
-        SetColor(Fore, NewBack);
+        SetColor(GetForeColor(), NewBack);
     }
 
     int Console::GetBackColor()
@@ -139,13 +208,14 @@ namespace wrench
         return Back;
     }
 
+    /** Clear */
     void Console::ClearChar(char NewChar, bool Reset)
     {
         CONSOLE_SCREEN_BUFFER_INFO Info;
         COORD Pos = {0, 0};
         DWORD Count;
         GetConsoleScreenBufferInfo(Output, &Info);
-        FillConsoleOutputCharacter(Output, NewChar, Info.dwSize.X*Info.dwSize.Y, Pos, &Count);
+        FillConsoleOutputCharacter(Output, NewChar, Info.dwSize.X * Info.dwSize.Y, Pos, &Count);
         if (Reset)
             SetXY(0, 0);
     }
@@ -156,7 +226,7 @@ namespace wrench
         COORD Pos = {0, 0};
         DWORD Count;
         GetConsoleScreenBufferInfo(Output, &Info);
-        FillConsoleOutputAttribute(Output, NewFore | NewBack << 4, Info.dwSize.X*Info.dwSize.Y, Pos, &Count);
+        FillConsoleOutputAttribute(Output, NewFore | NewBack << 4, Info.dwSize.X * Info.dwSize.Y, Pos, &Count);
         if (Reset)
             SetXY(0, 0);
         if (SwapColor)
@@ -171,36 +241,7 @@ namespace wrench
             SetXY(0, 0);
     }
 
-    void Console::SetCursor(int NewPercent)
-    {
-        CONSOLE_CURSOR_INFO Info;
-        if (NewPercent > 0)
-        {
-            if (NewPercent <= 100)
-            {
-                Info.dwSize = NewPercent;
-            }
-            else
-            {
-                Info.dwSize = 100;
-            }
-            Info.bVisible = TRUE;
-        }
-        else
-        {
-            Info.dwSize = 1;
-            Info.bVisible = FALSE;
-        }
-        SetConsoleCursorInfo(Output, &Info);
-    }
-
-    int Console::GetCursor()
-    {
-        CONSOLE_CURSOR_INFO Info;
-        GetConsoleCursorInfo(Output, &Info);
-        return (Info.bVisible == TRUE ? Info.dwSize : 0);
-    }
-
+    /** Title */
     void Console::SetTitle(std::string NewTitle)
     {
         SetConsoleTitle(NewTitle.c_str());
