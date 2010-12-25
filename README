@@ -1,1 +1,2 @@
-wrench is a small C++ library of useful functions that I have collected over time.
+wrench is a small C++ library of useful classes and functions that I have collected over time.
+Because I don't have much experience with making cross-platform stuff, these classes and functions only on Windows.

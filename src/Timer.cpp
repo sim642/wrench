@@ -7,11 +7,6 @@ namespace wrench
         StartCount.QuadPart = 0;
     }
 
-    Timer::~Timer()
-    {
-        //dtor
-    }
-
     bool Timer::Start()
     {
         Active = true;

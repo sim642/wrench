@@ -9,7 +9,6 @@ namespace wrench
     {
         public:
             Timer();
-            ~Timer();
 
             bool Start();
             bool Stop();
