@@ -7,9 +7,9 @@ namespace wrench
         int T;
         while (B != 0)
         {
-        	T = B;
-        	B = A % B;
-        	A = T;
+            T = B;
+            B = A % B;
+            A = T;
         }
         return A;
     }

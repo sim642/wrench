@@ -25,10 +25,10 @@ namespace wrench
         int Count = 1;
         while ((EndPosition = String.find(Separator, StartPosition)) != std::string::npos && (Limit > 0 ? Count < Limit : true))
         {
-        	Return.push_back(String.substr(StartPosition, EndPosition - StartPosition));
-        	StartPosition = EndPosition + Separator.length();
+            Return.push_back(String.substr(StartPosition, EndPosition - StartPosition));
+            StartPosition = EndPosition + Separator.length();
 
-        	if (Limit > 0)
+            if (Limit > 0)
             {
                 Count++;
             }
