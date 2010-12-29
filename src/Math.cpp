@@ -29,6 +29,16 @@ namespace wrench
             return -1;
     }
 
+    double Sign(double X)
+    {
+        if (X == 0)
+            return 0;
+        else if (X > 0)
+            return 1;
+        else
+            return -1;
+    }
+
     int NumberLength(int X)
     {
         if (X == 0)
@@ -47,7 +57,17 @@ namespace wrench
         return (X - InLow) * (OutHigh - OutLow) / (InHigh - InLow) + OutLow;
     }
 
+    double Map(double X, double InLow, double InHigh, double OutLow, double OutHigh)
+    {
+        return (X - InLow) * (OutHigh - OutLow) / (InHigh - InLow) + OutLow;
+    }
+
     int Constrain(int X, int Low, int High)
+    {
+        return X < Low ? Low : (X > High ? High : X);
+    }
+
+    double Constrain(double X, double Low, double High)
     {
         return X < Low ? Low : (X > High ? High : X);
     }

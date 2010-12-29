@@ -6,6 +6,7 @@
 #include "String.hpp"
 #include "Console.hpp"
 #include "Timer.hpp"
+#include "Joystick.hpp"
 
 /** Disable wrench operators in global namespace */
 #ifndef WRENCH_NO_GLOBALOPS
