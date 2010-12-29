@@ -40,12 +40,14 @@
 		<Unit filename="include\wrench\Console.hpp" />
 		<Unit filename="include\wrench\General.hpp" />
 		<Unit filename="include\wrench\GlobalOps.hpp" />
+		<Unit filename="include\wrench\Joystick.hpp" />
 		<Unit filename="include\wrench\Math.hpp" />
 		<Unit filename="include\wrench\String.hpp" />
 		<Unit filename="include\wrench\Timer.hpp" />
 		<Unit filename="include\wrench\wrench.hpp" />
 		<Unit filename="src\Console.cpp" />
 		<Unit filename="src\General.cpp" />
+		<Unit filename="src\Joystick.cpp" />
 		<Unit filename="src\Math.cpp" />
 		<Unit filename="src\String.cpp" />
 		<Unit filename="src\Timer.cpp" />

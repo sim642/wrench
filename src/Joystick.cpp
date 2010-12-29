@@ -34,6 +34,16 @@ namespace wrench
         return joyGetPos(Num, &Joy) == JOYERR_NOERROR;
     }
 
+    int Joystick::Axes()
+    {
+        return Caps.wNumAxes;
+    }
+
+    int Joystick::MaxAxes()
+    {
+        return Caps.wMaxAxes;
+    }
+
     bool Joystick::HasX()
     {
         return true;
@@ -98,6 +108,46 @@ namespace wrench
     {
         LoadInfo();
         return wrench::Map(Info.dwVpos, Caps.wVmin, Caps.wVmax, -1.f, 1.f);
+    }
+
+    bool Joystick::HasPOV()
+    {
+        return Caps.wCaps & JOYCAPS_HASPOV;
+    }
+
+    bool Joystick::HasCTS()
+    {
+        return Caps.wCaps & JOYCAPS_POVCTS;
+    }
+
+    int Joystick::GetPOV()
+    {
+        LoadInfo();
+        if (Info.dwPOV == JOY_POVCENTERED)
+            return Neutral; // Neutral position
+        else
+            return Info.dwPOV / 100; // Values *100
+    }
+
+    int Joystick::Buttons()
+    {
+        return Caps.wNumButtons;
+    }
+
+    int Joystick::MaxButtons()
+    {
+        return Caps.wMaxButtons;
+    }
+
+    int Joystick::GetBtns()
+    {
+        LoadInfo();
+        return Info.dwButtons;
+    }
+
+    bool Joystick::GetBtn(int Button)
+    {
+        return GetBtns() & (1 << Button);
     }
 
     bool Joystick::LoadCaps()
