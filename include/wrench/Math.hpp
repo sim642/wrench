@@ -8,25 +8,25 @@
 namespace wrench
 {
     template<typename T>
-    int Sgn(T X)
+    inline short Sgn(T X)
     {
         return X == 0 ? 0 : (X > 0 ? 1 : -1);
     }
 
     template<typename T>
-    T Abs(T X)
+    inline T Abs(T X)
     {
         return std::fabs(X);
     }
 
     template<typename T>
-    T Mod(T A, T B)
+    inline T Mod(T A, T B)
     {
         return std::fmod(A, B);
     }
 
     template<typename T>
-    T Gcd(T A, T B)
+    inline T Gcd(T A, T B)
     {
         T C;
         while (B != 0)
@@ -39,13 +39,13 @@ namespace wrench
     }
 
     template<typename T>
-    T Lcm(T A, T B)
+    inline T Lcm(T A, T B)
     {
         return Abs(A * B) / Gcd(A, B);
     }
 
     template<typename T>
-    unsigned int NumberLength(T X)
+    inline unsigned int NumberLength(T X)
     {
         if (int(X) == 0)
             return 1;
@@ -54,19 +54,19 @@ namespace wrench
     }
 
     template<typename T>
-    unsigned int NumberPos(T X, int I)
+    inline unsigned short NumberPos(T X, int I)
     {
         return int(X / std::pow(10.0, I)) % 10;
     }
 
     template<typename T>
-    T Map(T X, T InLow, T InHigh, T OutLow, T OutHigh)
+    inline T Map(T X, T InLow, T InHigh, T OutLow, T OutHigh)
     {
         return (X - InLow) * (OutHigh - OutLow) / (InHigh - InLow) + OutLow;
     }
 
     template<typename T>
-    T Constrain(T X, T Low, T High)
+    inline T Constrain(T X, T Low, T High)
     {
         return X < Low ? Low : (X > High ? High : X);
     }

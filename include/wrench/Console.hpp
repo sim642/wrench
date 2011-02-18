@@ -17,7 +17,7 @@ namespace wrench
                         Grey = 8, BrightWhite = 15
                        };
             enum Cursor {Hidden, Default = 25, Full = 100};
-            enum Size {DefaultBufferWidth = 80, DefaultBufferHeight = 300, DefaultWindowWidth = 30, DefaultWindowHeight = 24};
+            enum Size {DefaultBufferWidth = 80, DefaultBufferHeight = 300, DefaultWindowWidth = 80, DefaultWindowHeight = 24};
 
             Console()
             {
