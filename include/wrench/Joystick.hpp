@@ -56,6 +56,10 @@ namespace wrench
                 return joyGetPos(Num, &Joy) == JOYERR_NOERROR;
             }
 
+            void Update()
+            {
+                LoadInfo();
+            }
 
             int Axes()
             {
@@ -74,7 +78,6 @@ namespace wrench
 
             float GetX()
             {
-                LoadInfo();
                 return wrench::Map<float>(Info.dwXpos, Caps.wXmin, Caps.wXmax, -1.f, 1.f);
             }
 
@@ -85,7 +88,6 @@ namespace wrench
 
             float GetY()
             {
-                LoadInfo();
                 return wrench::Map<float>(Info.dwYpos, Caps.wYmin, Caps.wYmax, -1.f, 1.f);
             }
 
@@ -96,7 +98,6 @@ namespace wrench
 
             float GetZ()
             {
-                LoadInfo();
                 return wrench::Map<float>(Info.dwZpos, Caps.wZmin, Caps.wZmax, -1.f, 1.f);
             }
 
@@ -107,7 +108,6 @@ namespace wrench
 
             float GetR()
             {
-                LoadInfo();
                 return wrench::Map<float>(Info.dwRpos, Caps.wRmin, Caps.wRmax, -1.f, 1.f);
             }
 
@@ -118,7 +118,6 @@ namespace wrench
 
             float GetU()
             {
-                LoadInfo();
                 return wrench::Map<float>(Info.dwUpos, Caps.wUmin, Caps.wUmax, -1.f, 1.f);
             }
 
@@ -129,7 +128,6 @@ namespace wrench
 
             float GetV()
             {
-                LoadInfo();
                 return wrench::Map<float>(Info.dwVpos, Caps.wVmin, Caps.wVmax, -1.f, 1.f);
             }
 
@@ -145,7 +143,6 @@ namespace wrench
 
             int GetPOV()
             {
-                LoadInfo();
                 if (Info.dwPOV == JOY_POVCENTERED)
                     return Neutral; // Neutral position
                 else
@@ -164,7 +161,6 @@ namespace wrench
 
             int GetBtns()
             {
-                LoadInfo();
                 return Info.dwButtons;
             }
 
