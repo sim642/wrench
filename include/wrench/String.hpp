@@ -87,7 +87,7 @@ namespace wrench
             return String.substr(0, Length);
         else
         {
-            unsigned int AddRight = (Length - String.length()) / 2;
+            unsigned int AddRight = (Length - String.length()) / 2 + 1;
             std::string PaddedRight;
             return PadLeft(PaddedRight = PadRight(String, String.length() + AddRight, Pad), Length - PaddedRight.length(), Pad);
         }
