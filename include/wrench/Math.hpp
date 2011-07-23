@@ -4,6 +4,7 @@
 #include <wrench/Config.hpp>
 
 #include <cmath>
+#include <ctime>
 
 namespace wrench
 {
@@ -69,6 +70,17 @@ namespace wrench
     inline T Constrain(T X, T Low, T High)
     {
         return X < Low ? Low : (X > High ? High : X);
+    }
+
+    inline void RandomSeed(unsigned int Seed = std::time(0))
+    {
+        srand(Seed);
+    }
+
+    template<typename T>
+    inline T Random(T Low, T High)
+    {
+        return static_cast<double>(rand()) / RAND_MAX * (High - Low) + Low;
     }
 }
 
